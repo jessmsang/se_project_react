@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+.weather-card__hidden {
+  display: none;
+}
+
 .weather-card__temperature {
   font-size: 36px;
   font-weight: 700;
@@ -21,4 +25,10 @@
   width: 100%;
   object-fit: cover;
   object-position: right top;
+}
+
+@media screen and (max-width: 725px) {
+  .weather-card {
+    margin-bottom: 12px;
+  }
 }

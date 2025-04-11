@@ -4,11 +4,11 @@ export const weatherOptions = [
     condition: "clear",
     url: new URL("../assets/day/clear.svg", import.meta.url).href,
   },
-  // {
-  //   day: true,
-  //   condition: "clouds",
-  //   url: new URL("../assets/day/clouds.svg", import.meta.url).href,
-  // },
+  {
+    day: true,
+    condition: "clouds",
+    url: new URL("../assets/day/clouds.svg", import.meta.url).href,
+  },
   {
     day: true,
     condition: "fog",

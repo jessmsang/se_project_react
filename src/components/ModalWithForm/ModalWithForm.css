@@ -53,6 +53,10 @@
   padding: 0;
 }
 
+.modal__close-btn:hover {
+  opacity: 1;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -98,9 +102,13 @@
   margin-bottom: 8px;
 }
 
+.modal__label_type_radio:focus-within {
+  color: rgba(0, 0, 0, 1);
+}
+
 .modal__submit-btn {
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
   padding: 0;
   width: 124px;
@@ -109,4 +117,15 @@
   font-size: 16px;
   line-height: 1.25;
   font-weight: 700;
+}
+
+.modal__submit-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 725px) {
+  .modal {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

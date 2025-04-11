@@ -1,7 +1,7 @@
 import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
-function WeatherCard({ weatherData }) {
+function WeatherCard({ weatherData, isMobileMenuActive }) {
   const filteredOptions = weatherOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&
@@ -17,7 +17,11 @@ function WeatherCard({ weatherData }) {
   }
 
   return (
-    <section className="weather-card">
+    <section
+      className={`weather-card ${
+        isMobileMenuActive ? "weather-card__hidden" : ""
+      }`}
+    >
       <p className="weather-card__temperature">{weatherData.temp.C}&deg;C</p>
       <img
         src={weatherOption?.url}
