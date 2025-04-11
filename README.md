@@ -6,7 +6,7 @@ The idea of this application is pretty simple! We make a call to an API, which t
 
 ## Technologies and Techniques Used
 
-This project was our first project to use React. It was a good opportunity to become more fluent in state management.
+This project was our first project to use React. It was a good opportunity to become more fluent in state management. It also uses responsive design to create a mobile-view, which includes its own CSS styling in addition to the desktop-view CSS styling. This project utilizes a weather API to provide weather data in which the app adapts to.
 
 ## Links
 
