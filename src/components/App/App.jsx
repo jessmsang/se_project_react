@@ -62,6 +62,7 @@ function App() {
           btnText="Add garment"
           activeModal={activeModal}
           onClose={closeActiveModal}
+          isOpen={activeModal === "add-garment"}
         >
           <label htmlFor="name-input" className="modal__label">
             Name
