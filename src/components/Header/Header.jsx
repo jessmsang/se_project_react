@@ -2,6 +2,7 @@ import "./Header.css";
 import { useState } from "react";
 import logo from "../../assets/logo.svg";
 import userAvatar from "../../assets/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({
   handleAddClick,
@@ -39,6 +40,7 @@ function Header({
       >
         {currentDate}, {weatherData.city}
       </p>
+      <ToggleSwitch />
       <button
         onClick={handleAddClick}
         type="button"
@@ -46,7 +48,6 @@ function Header({
       >
         + Add Clothes
       </button>
-
       <div className="header__user-container">
         <p className="header__user-name">Terrance Tegegne</p>
         <img
