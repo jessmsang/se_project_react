@@ -1,11 +1,19 @@
-.modal__container_type_preview {
+.modal {
   position: relative;
+}
+.modal__container_type_preview {
+  position: absolute;
   padding: 0;
   border-radius: 20px;
   overflow: hidden;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
+  background: rgba(255, 255, 255, 1);
+  width: 498px;
+  height: 610px;
+  border-radius: 20px;
+  border-width: 1px;
 }
 
 .modal__footer {

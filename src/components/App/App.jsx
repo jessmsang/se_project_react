@@ -11,6 +11,7 @@ import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -42,6 +43,11 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleDeleteClick = () => {
+    setActiveModal("delete-confirmation");
+    setIsMobileMenuActive(false);
   };
 
   const handleDeleteCard = (card) => {
@@ -112,7 +118,14 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
+            handleDeleteClick={handleDeleteClick}
+          />
+          <DeleteConfirmationModal
+            activeModal={activeModal}
+            card={selectedCard}
+            onClose={closeActiveModal}
             onDelete={handleDeleteCard}
+            handleDeleteClick={handleDeleteClick}
           />
           <Footer />
         </div>
