@@ -1,4 +1,3 @@
-import { defaultClothingItems } from "../../utils/constants";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -7,7 +6,12 @@ import randomizeIcon from "../../assets/randomize-icon.svg";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick, isMobileMenuActive }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  isMobileMenuActive,
+  clothingItems,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (
@@ -22,7 +26,7 @@ function Main({ weatherData, handleCardClick, isMobileMenuActive }) {
           &deg;{currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

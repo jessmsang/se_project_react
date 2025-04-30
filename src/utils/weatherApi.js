@@ -29,11 +29,11 @@ const isDay = ({ sunrise, sunset }, now) => {
 };
 
 const getWeatherType = (temp) => {
-  if (temp > 30) {
+  if (temp >= 30) {
     return "hot";
-  } else if (temp >= 19 && temp < 29) {
+  } else if (temp >= 19 && temp <= 29) {
     return "warm";
-  } else if (temp >= 18) {
+  } else if (temp <= 18) {
     return "cold";
   }
 };

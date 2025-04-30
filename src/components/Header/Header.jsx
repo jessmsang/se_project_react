@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
-import { useState } from "react";
 import logo from "../../assets/logo.svg";
 import userAvatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -21,11 +21,16 @@ function Header({
 
   return (
     <header className="header">
-      <img
-        className={`header__logo ${isMobileMenuActive ? "header__hidden" : ""}`}
-        src={logo}
-        alt="logo"
-      ></img>
+      <Link to="/">
+        <img
+          className={`header__logo ${
+            isMobileMenuActive ? "header__hidden" : ""
+          }`}
+          src={logo}
+          alt="logo"
+        />
+      </Link>
+
       <button
         onClick={handleMobileMenuClick}
         type="button"
@@ -48,14 +53,16 @@ function Header({
       >
         + Add Clothes
       </button>
-      <div className="header__user-container">
-        <p className="header__user-name">Terrance Tegegne</p>
-        <img
-          className="header__user-avatar"
-          src={userAvatar}
-          alt="Terrance Tegegne"
-        ></img>
-      </div>
+      <Link to="/profile" className="header__link">
+        <div className="header__user-container">
+          <p className="header__user-name">Terrance Tegegne</p>
+          <img
+            className="header__user-avatar"
+            src={userAvatar}
+            alt="Terrance Tegegne"
+          ></img>
+        </div>
+      </Link>
 
       {isMobileMenuActive && (
         <div className="header__mobile-menu_active">
