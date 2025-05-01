@@ -8,7 +8,7 @@
     },
     {
       "_id": 1,
-      "name": "Boot",
+      "name": "Boots",
       "weather": "cold",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
     },
@@ -45,7 +45,7 @@
     {
       "_id": 7,
       "name": "Jeans",
-      "weather": "warm",
+      "weather": "cold",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
     },
     {
@@ -93,7 +93,7 @@
     {
       "_id": 15,
       "name": "Sweatshirt",
-      "weather": "warm",
+      "weather": "cold",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
     },
     {
@@ -107,6 +107,24 @@
       "weather": "warm",
       "imageUrl": "https://www.brixton.com/cdn/shop/products/m6qyhdxgh0dntwmmef69.jpg?v=1738633509",
       "_id": 17
+    },
+    {
+      "name": "Joggers",
+      "weather": "warm",
+      "imageUrl": "https://target.scene7.com/is/image/Target/GUEST_73f4a556-b0a5-480c-bdaf-4bd50174e6aa?wid=1200&hei=1200&qlt=80&fmt=webp",
+      "_id": 18
+    },
+    {
+      "name": "Tank Top",
+      "weather": "hot",
+      "imageUrl": "https://losangelesapparel.net/cdn/shop/files/1815--sage_bfd2bf2c-6e3f-44f0-a842-f8d432913f3e.jpg?v=1729107021&width=2250",
+      "_id": 19
+    },
+    {
+      "name": "T-Shirt",
+      "weather": "warm",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFbcnaw6QUcV4CSe-iWSRHSk_wtLYKD4-EpQ&s",
+      "_id": 20
     }
   ]
 }
