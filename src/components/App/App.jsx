@@ -61,8 +61,8 @@ function App() {
       .catch(console.error);
   };
 
-  const handleAddItemModalSubmit = ({ name, weather, imageUrl }) => {
-    addItem({ name, weather, imageUrl })
+  const handleAddItemModalSubmit = ({ name, weatherType, imageUrl }) => {
+    addItem({ name, weather: weatherType, imageUrl })
       .then((newItem) => {
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         closeActiveModal();
