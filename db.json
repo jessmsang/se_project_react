@@ -125,6 +125,12 @@
       "weather": "warm",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFbcnaw6QUcV4CSe-iWSRHSk_wtLYKD4-EpQ&s",
       "_id": 20
+    },
+    {
+      "name": "Flip Flops",
+      "weather": "hot",
+      "imageUrl": "https://oldnavy.gap.com/webcontent/0055/254/561/cn55254561.jpg",
+      "_id": 21
     }
   ]
 }
