@@ -1,4 +1,3 @@
-import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
@@ -6,12 +5,54 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weatherType, setWeatherType] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    imageUrl: "",
+    weatherType: "",
+  });
 
-  const handleNameChange = (evt) => setName(evt.target.value);
-  const handleImageUrlChange = (evt) => setImageUrl(evt.target.value);
-  const handleWeatherTypeChange = (evt) => setWeatherType(evt.target.value);
+  const handleNameChange = (evt) => {
+    const value = evt.target.value;
+    setName(value);
+    setErrors((prev) => ({
+      ...prev,
+      name: value.trim() === "" ? "Name is required." : "",
+    }));
+  };
+
+  const handleImageUrlChange = (evt) => {
+    const value = evt.target.value;
+    setImageUrl(value);
+    setErrors((prev) => ({
+      ...prev,
+      imageUrl: value.trim() === "" ? "Image URL is required." : "",
+    }));
+  };
+
+  const handleWeatherTypeChange = (evt) => {
+    const value = evt.target.value;
+    setWeatherType(value);
+    setErrors((prev) => ({
+      ...prev,
+      weatherType: value.trim() === "" ? "Please select a weather type." : "",
+    }));
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    const newErrors = {
+      name: name.trim() === "" ? "Name is required." : "",
+      imageUrl: imageUrl.trim() === "" ? "Image URL is required." : "",
+      weatherType:
+        weatherType.trim() === "" ? "Please select a weather type." : "",
+    };
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((error) => error !== "")) {
+      return;
+    }
+
     onAddItemModalSubmit({ name, imageUrl, weatherType });
     setName("");
     setImageUrl("");
