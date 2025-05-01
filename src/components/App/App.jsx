@@ -10,8 +10,8 @@ import Footer from "../Footer/Footer";
 import { coordinates, APIkey } from "../../utils/constants";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../../utils/constants";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import { addItem, deleteItem, getItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -21,7 +21,7 @@ function App() {
     temp: { F: 999, C: 999 },
     type: "",
   });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
@@ -50,17 +50,24 @@ function App() {
     setIsMobileMenuActive(false);
   };
 
-  const handleDeleteCard = (card) => {
-    setClothingItems((prevItems) => prevItems.filter((i) => i !== card));
-    closeActiveModal();
+  const handleDeleteCard = () => {
+    deleteItem({ cardId: selectedCard._id })
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedCard._id)
+        );
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
-  const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    setClothingItems((prevItems) => [
-      { name, link: imageUrl, weather: weatherType },
-      ...prevItems,
-    ]);
-    closeActiveModal();
+  const handleAddItemModalSubmit = ({ name, weather, imageUrl }) => {
+    addItem({ name, weather, imageUrl })
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -68,6 +75,14 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
