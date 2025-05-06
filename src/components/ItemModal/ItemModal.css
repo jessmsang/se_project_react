@@ -2,7 +2,7 @@
   position: relative;
 }
 .modal__container_type_preview {
-  position: absolute;
+  /* position: absolute; */
   padding: 0;
   border-radius: 20px;
   overflow: hidden;
@@ -10,10 +10,16 @@
   font-size: 20px;
   line-height: 1.2;
   background: rgba(255, 255, 255, 1);
-  width: fit-content;
-  height: fit-content;
   border-radius: 20px;
   border-width: 1px;
+}
+
+.modal__image {
+  max-width: 498px;
+  max-height: 498px;
+  width: 100%;
+  padding: 0;
+  object-fit: contain;
 }
 
 .modal__footer {
