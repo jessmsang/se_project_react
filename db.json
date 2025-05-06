@@ -107,6 +107,23 @@
       "weather": "warm",
       "imageUrl": "https://cdn.clothingshoponline.com/Images/Color/104178_f_fl.jpg",
       "_id": 23
+    },
+    {
+      "name": "Long-Sleeve Shirt",
+      "weather": "cold",
+      "imageUrl": "https://www.ivyandcloth.com/cdn/shop/files/ComfortColorsLongSleeveTee6014Mockup-BlueJean_8338dc0b-8095-493b-b243-089e6c1d1c0f.jpg?v=1696865800",
+      "_id": 24
+    },
+    {
+      "name": "Converse",
+      "weather": "warm",
+      "imageUrl": "https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw145d35d6/images/l_08/561680C_L_08X1.jpg?sw=406",
+      "_id": 25
+    },
+    {
+      "name": "Docs",
+      "imageUrl": "https://images.dsw.com/is/image/DSWShoes/461597_002_ss_01?impolicy=qlt-medium-high&imwidth=640&imdensity=2",
+      "_id": 26
     }
   ]
 }
