@@ -1,78 +1,6 @@
 {
   "items": [
     {
-      "_id": 0,
-      "name": "Beanie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
-    },
-    {
-      "_id": 1,
-      "name": "Boots",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
-      "_id": 2,
-      "name": "Cap",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
-    },
-    {
-      "_id": 5,
-      "name": "Hoodie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
-    },
-    {
-      "_id": 6,
-      "name": "Jacket",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
-    },
-    {
-      "_id": 7,
-      "name": "Jeans",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
-    },
-    {
-      "_id": 10,
-      "name": "Scarf",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
-    },
-    {
-      "_id": 11,
-      "name": "Shorts",
-      "weather": "Hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
-    },
-    {
-      "_id": 13,
-      "name": "Sneakers",
-      "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
-    },
-    {
-      "_id": 14,
-      "name": "Sunglasses",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
-    },
-    {
-      "_id": 15,
-      "name": "Sweatshirt",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
-    },
-    {
-      "_id": 16,
-      "name": "T-Shirt",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
       "name": "Flannel",
       "weather": "warm",
       "imageUrl": "https://www.brixton.com/cdn/shop/products/m6qyhdxgh0dntwmmef69.jpg?v=1738633509",
@@ -122,8 +50,75 @@
     },
     {
       "name": "Docs",
+      "weather": "cold",
       "imageUrl": "https://images.dsw.com/is/image/DSWShoes/461597_002_ss_01?impolicy=qlt-medium-high&imwidth=640&imdensity=2",
-      "_id": 26
+      "_id": 38
+    },
+    {
+      "name": "Beanie",
+      "weather": "cold",
+      "imageUrl": "https://hatstore.imgix.net/HS2214647_1.jpg",
+      "_id": 39
+    },
+    {
+      "name": "Boots",
+      "weather": "cold",
+      "imageUrl": "https://www.blundstone.com/media/catalog/product/1/3/1351_sand-min_1.jpg?optimize=low&bg-color=255,255,255&fit=bounds&height=&width=",
+      "_id": 40
+    },
+    {
+      "name": "Cap",
+      "weather": "hot",
+      "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/1f8e5a040b414c6dbcceda97622b6f54_9366/Adicolor_Classics_Trefoil_Stonewashed_Baseball_Hat_Black_IK9580_01_standard.jpg",
+      "_id": 41
+    },
+    {
+      "name": "Hoodie",
+      "weather": "cold",
+      "imageUrl": "https://hourscollection.com/cdn/shop/files/DropShoulderHoodie-Grey-productphoto_1_800x.png?v=1739305890",
+      "_id": 42
+    },
+    {
+      "name": "Coat",
+      "weather": "cold",
+      "imageUrl": "https://www.rei.com/media/75bd82fe-767b-4561-8426-fd7c7e9b5550?size=2000",
+      "_id": 43
+    },
+    {
+      "name": "Jeans",
+      "weather": "cold",
+      "imageUrl": "https://i5.walmartimages.com/seo/GUESS-Womens-Eco-Crystal-Rip-Repair-Mom-Relaxed-Fit-Jeans-Black-29_eed73d9d-c46c-42af-b991-68d49d747196.bb3a5cfad2a0cf1da9f32f3fd869a77d.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF",
+      "_id": 44
+    },
+    {
+      "name": "Scarf",
+      "weather": "cold",
+      "imageUrl": "https://www.jamesondouglasclothing.com/cdn/shop/files/HeatherGreyScarf.png?v=1732590548",
+      "_id": 45
+    },
+    {
+      "name": "Shorts",
+      "weather": "hot",
+      "imageUrl": "https://www.countryclubprep.com/cdn/shop/products/women-s-shorts-women-s-play-up-2-0-shorts-in-black-by-under-armour-1.jpg?v=1578501806&width=800",
+      "_id": 46
+    },
+    {
+      "name": "T-Shirt",
+      "weather": "hot",
+      "imageUrl": "https://cdnp.sanmar.com/medias/sys_master/images/h74/h48/15491605397534/1200W_9671_Crunchbrry-12-1717CrunchbrryFlatFront1/1200W-9671-Crunchbrry-12-1717CrunchbrryFlatFront1.jpg",
+      "_id": 47
+    },
+    {
+      "name": "Crewneck",
+      "weather": "cold",
+      "imageUrl": "https://www.asphaltgold.com/cdn/shop/files/bdd1eb6367136669e2334207f85e32de6bac2492_DX1361_063_NikeLab_Solo_Swoosh_Crewneck_Dark_Grey_Heather_White_os_1_fd32a48d-cea4-4077-9eb3-6976a6b406d1.jpg?v=1739352382",
+      "_id": 48
+    },
+    {
+      "name": "Sunglasses",
+      "weather": "hot",
+      "imageUrl": "https://images2.ray-ban.com//cdn-record-files-pi/962c7ffa-434c-414b-8029-a825002db691/491e3f75-bd0d-4a9a-9f54-ad42013eb7e7/0RB3716__900471__STD__shad__qt.png?impolicy=RB_Product_clone&width=700&bgc=%23f2f2f2",
+      "_id": 49
     }
   ]
 }

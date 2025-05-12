@@ -2,7 +2,6 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./randomize.css";
-import randomizeIcon from "../../assets/randomize-icon.svg";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
@@ -41,16 +40,7 @@ function Main({
             })}
         </ul>
       </section>
-      <section className="randomize">
-        <button className="randomize__btn">
-          <img
-            src={randomizeIcon}
-            alt="randomize-icon"
-            className="randomize__icon"
-          />
-          Randomize
-        </button>
-      </section>
+
       <section>
         <ModalWithForm />
       </section>

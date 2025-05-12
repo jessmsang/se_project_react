@@ -7,7 +7,7 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkError);
 }
 
-function addItem({ name, weatherType, imageUrl }) {
+function addItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -15,7 +15,7 @@ function addItem({ name, weatherType, imageUrl }) {
     },
     body: JSON.stringify({
       name,
-      weatherType,
+      weather: weatherType,
       imageUrl,
     }),
   }).then(checkError);

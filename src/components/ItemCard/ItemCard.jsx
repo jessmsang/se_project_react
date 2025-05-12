@@ -1,5 +1,5 @@
-import "../Main/cards.css";
-import "../Main/card.css";
+import "../ItemCard/card.css";
+import "../ItemCard/cards.css";
 
 function ItemCard({ item, onCardClick }) {
   const handleCardClick = () => {
@@ -7,15 +7,15 @@ function ItemCard({ item, onCardClick }) {
   };
 
   return (
-    <div className="card">
+    <li className="card">
       <h2 className="card__name">{item.name}</h2>
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={`${item.imageUrl}`}
+        src={item.imageUrl}
         alt={item.name}
       />
-    </div>
+    </li>
   );
 }
 

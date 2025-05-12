@@ -2,26 +2,11 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
 function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
-  // const [name, setName] = useState("");
-  // const [imageUrl, setImageUrl] = useState("");
-  // const [weatherType, setWeatherType] = useState("");
   const { values, handleChange, setValues } = useForm({
     name: "",
     imageUrl: "",
     weatherType: "",
   });
-
-  // const handleNameChange = (evt) => {
-  //   setName(evt.target.value);
-  // };
-
-  // const handleImageUrlChange = (evt) => {
-  //   setImageUrl(evt.target.value);
-  // };
-
-  // const handleWeatherTypeChange = (evt) => {
-  //   setWeatherType(evt.target.value);
-  // };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

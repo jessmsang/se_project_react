@@ -9,6 +9,8 @@ function Header({
   weatherData,
   isMobileMenuActive,
   setIsMobileMenuActive,
+  isMobile,
+  isProfilePage,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -20,7 +22,7 @@ function Header({
   };
 
   return (
-    <header className="header">
+    <header className={`header ${isProfilePage ? "header__profile" : ""}`}>
       <Link to="/">
         <img
           className={`header__logo ${
@@ -45,7 +47,9 @@ function Header({
       >
         {currentDate}, {weatherData.city}
       </p>
-      <ToggleSwitch />
+      {!isMobileMenuActive && !isMobile && (
+        <ToggleSwitch className="header__toggle-switch" />
+      )}
       <button
         onClick={handleAddClick}
         type="button"
@@ -72,7 +76,9 @@ function Header({
             className="header__mobile-close-btn"
           ></button>
           <div className="header__mobile-user-container">
-            <p className="header__mobile-user-name">Terrance Tegegne</p>
+            <Link to="/profile" className="header__mobile-link">
+              <p className="header__mobile-user-name">Terrance Tegegne</p>
+            </Link>
             <img
               className="header__mobile-user-avatar"
               src={userAvatar}
@@ -86,6 +92,7 @@ function Header({
           >
             + Add Clothes
           </button>
+          <ToggleSwitch className="header__mobile-toggle-switch" />
         </div>
       )}
     </header>

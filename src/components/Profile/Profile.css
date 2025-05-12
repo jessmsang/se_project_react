@@ -7,6 +7,10 @@
   width: 25%;
 }
 
+.profile__divider {
+  display: none;
+}
+
 .profile__clothes-section {
   width: 75%;
 }
@@ -14,5 +18,18 @@
 @media screen and (max-width: 725px) {
   .profile {
     margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .profile__sidebar {
+    width: 100%;
+  }
+
+  .profile__sidebar-hidden {
+    display: none;
+  }
+
+  .profile__clothes-section {
+    width: 100%;
   }
 }

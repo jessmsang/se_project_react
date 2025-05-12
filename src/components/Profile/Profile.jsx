@@ -2,11 +2,21 @@ import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile({ clothingItems, handleCardClick, handleAddClick }) {
+function Profile({
+  clothingItems,
+  handleCardClick,
+  handleAddClick,
+  isMobile,
+  isMobileMenuActive,
+}) {
   return (
     <div className="profile">
-      <section className="profile__sidebar">
-        <SideBar />
+      <section
+        className={`profile__sidebar ${
+          isMobileMenuActive ? "profile__sidebar-hidden" : ""
+        }`}
+      >
+        <SideBar isMobile={isMobile} isMobileMenuActive={isMobileMenuActive} />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection

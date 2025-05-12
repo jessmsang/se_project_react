@@ -2,7 +2,6 @@
   position: relative;
 }
 .modal__container_type_preview {
-  /* position: absolute; */
   padding: 0;
   border-radius: 20px;
   overflow: hidden;

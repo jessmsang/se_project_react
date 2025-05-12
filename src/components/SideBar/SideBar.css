@@ -4,9 +4,13 @@
   margin-right: 20px;
 }
 
+.sidebar__hidden {
+  display: none;
+}
+
 .sidebar__user-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -20,4 +24,41 @@
   font-weight: 700;
   line-height: 1;
   margin: 0;
+}
+
+@media screen and (max-width: 725px) {
+  .sidebar {
+    padding: 20px 0;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebar__hidden {
+    display: none;
+  }
+
+  .sidebar__user-name {
+    margin-bottom: 12px;
+  }
+
+  .sidebar__mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar__mobile-btns {
+    display: flex;
+    justify-content: flex-start;
+    border: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 20px;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 8px;
+  }
+
+  .sidebar__mobile-btns:last-of-type {
+    margin-bottom: 0;
+  }
 }

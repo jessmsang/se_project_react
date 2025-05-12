@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+
 import "./App.css";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
-import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
-import Footer from "../Footer/Footer";
-import { coordinates, APIkey } from "../../utils/constants";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import ItemModal from "../ItemModal/ItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import Footer from "../Footer/Footer";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+
+import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { coordinates, APIkey } from "../../utils/constants";
 import { addItem, deleteItem, getItems } from "../../utils/api";
 
 function App() {
@@ -26,6 +29,10 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("C");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 725);
+
+  const location = useLocation();
+  const isProfilePage = location.pathname === "/profile";
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "C" ? "F" : "C");
@@ -61,12 +68,10 @@ function App() {
       .catch(console.error);
   };
 
-  const handleAddItemModalSubmit = (
-    { name, weatherType, imageUrl },
-    resetForm
-  ) => {
-    addItem({ name, weather: weatherType, imageUrl })
+  const handleAddItemModalSubmit = ({ name, weather, imageUrl }, resetForm) => {
+    addItem({ name, weather, imageUrl })
       .then((newItem) => {
+        console.log("New item data:", newItem);
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         resetForm();
         closeActiveModal();
@@ -91,6 +96,18 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 725);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -102,6 +119,8 @@ function App() {
             weatherData={weatherData}
             isMobileMenuActive={isMobileMenuActive}
             setIsMobileMenuActive={setIsMobileMenuActive}
+            isMobile={isMobile}
+            isProfilePage={isProfilePage}
           ></Header>
           <Routes>
             <Route
@@ -122,6 +141,8 @@ function App() {
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
                   handleAddClick={handleAddClick}
+                  isMobile={isMobile}
+                  isMobileMenuActive={isMobileMenuActive}
                 />
               }
             />

@@ -20,6 +20,11 @@
   margin: 0 0 0 24px;
 }
 
+.header__toggle-switch {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
 .header__add-clothes-btn {
   margin-left: 0;
   border: none;
@@ -107,8 +112,25 @@
     position: relative;
   }
 
+  .header__profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    align-items: center;
+  }
+
+  .header__mobile-menu_active {
+    padding: 40px 0;
+  }
+
+  .header__mobile-close-btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
   .header__mobile-menu-btn {
-    position: absolute;
+    position: fixed;
     top: 18px;
     right: 16px;
     display: block;
@@ -118,6 +140,7 @@
     height: 44px;
     border: none;
     padding: 0;
+    margin: 0;
     border-radius: 10px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
   }
@@ -126,6 +149,19 @@
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+  }
+
+  .header__mobile-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .header__mobile-link:hover {
+    cursor: pointer;
+    opacity: 0.7;
   }
 
   .header__mobile-add-clothes-btn:hover {
@@ -145,5 +181,12 @@
 
   .header__user-container {
     display: none;
+  }
+
+  .header__profile .header__date-and-location {
+    margin-left: 12px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.2;
   }
 }
