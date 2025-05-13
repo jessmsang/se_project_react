@@ -1,7 +1,6 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  padding: 85px 0 0;
 }
 
 .footer__author {
@@ -14,6 +13,6 @@
 
 @media screen and (max-width: 725px) {
   .footer {
-    padding: 83px 0 0;
+    /* padding: 16px 0 0; */
   }
 }

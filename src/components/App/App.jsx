@@ -71,7 +71,6 @@ function App() {
   const handleAddItemModalSubmit = ({ name, weather, imageUrl }, resetForm) => {
     addItem({ name, weather, imageUrl })
       .then((newItem) => {
-        console.log("New item data:", newItem);
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         resetForm();
         closeActiveModal();
@@ -167,8 +166,8 @@ function App() {
             onDelete={handleDeleteCard}
             handleDeleteClick={handleDeleteClick}
           />
-          <Footer />
         </div>
+        <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

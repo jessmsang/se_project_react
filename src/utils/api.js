@@ -15,7 +15,7 @@ function addItem({ name, weather, imageUrl }) {
     },
     body: JSON.stringify({
       name,
-      weather: weatherType,
+      weather,
       imageUrl,
     }),
   }).then(checkError);

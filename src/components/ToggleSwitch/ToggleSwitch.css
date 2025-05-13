@@ -64,6 +64,14 @@
 
 @media screen and (max-width: 725px) {
   .toggle-switch {
-    margin: 24px 0 0;
+    margin: 0 auto;
+  }
+
+  .toggle-switch__slider {
+    top: -3px;
+  }
+
+  .toggle-switch__text {
+    top: 6.5px;
   }
 }
