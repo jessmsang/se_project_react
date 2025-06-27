@@ -29,6 +29,11 @@
   margin-right: 20px;
 }
 
+.header__authorized-view {
+  display: flex;
+  flex-direction: row;
+}
+
 .header__add-clothes-btn {
   margin-left: 0;
   border: none;
@@ -39,6 +44,30 @@
 
 .header__add-clothes-btn:hover {
   cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__unauthorized-view {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 0;
+}
+
+.header__unauthorized-item {
+  padding: 0;
+  list-style: none;
+}
+
+.header__unauthorized-btn {
+  border: none;
+  padding: 0;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.header__unauthorized-btn:hover {
   opacity: 0.7;
 }
 
@@ -63,6 +92,24 @@
 
 .header__user-name {
   margin: 0;
+}
+
+.header__user-avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.header__user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  margin: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 725px) {
@@ -137,6 +184,18 @@
   .header__mobile-user-name {
     margin: 0 12px 0 0;
     font-weight: 700;
+  }
+
+  .header__mobile-user-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 1);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .header__mobile-close-btn:hover {

@@ -56,6 +56,7 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
           onChange={handleChange}
           value={values.imageUrl}
         />
+        <span className="modal__error" id="image-input-error"></span>
       </label>
       <fieldset className="modal__radio-btns">
         <legend className="modal__legend">Select the weather type:</legend>

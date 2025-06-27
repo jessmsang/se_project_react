@@ -1,7 +1,17 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ clothingItems, handleCardClick, handleAddClick }) {
+function ClothesSection({
+  clothingItems,
+  handleCardClick,
+  handleAddClick,
+  onCardLike,
+  currentUser,
+}) {
+  const currentUserItems = clothingItems.filter((item) => {
+    return item.owner === currentUser._id;
+  });
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__text">
@@ -14,11 +24,24 @@ function ClothesSection({ clothingItems, handleCardClick, handleAddClick }) {
           + Add new
         </button>
       </div>
-      <ul className="clothes-section__clothes-list">
-        {clothingItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={handleCardClick} />
-        ))}
-      </ul>
+      {currentUser && (
+        <ul className="clothes-section__clothes-list">
+          {currentUserItems.map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardClick={handleCardClick}
+              onCardLike={onCardLike}
+              currentUser={currentUser}
+            />
+          ))}
+        </ul>
+      )}
+      {currentUser && (
+        <p className="clothes-section__empty-list-text">
+          {currentUserItems.length === 0 ? "No Items Added Yet" : ""}
+        </p>
+      )}
     </div>
   );
 }

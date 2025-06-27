@@ -1,33 +1,48 @@
+import { useContext } from "react";
 import "./SideBar.css";
-import userAvatar from "../../assets/avatar.svg";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SideBar({ isMobile, isMobileMenuActive }) {
+function SideBar({
+  isMobile,
+  isMobileMenuActive,
+  handleLogout,
+  handleEditProfileClick,
+}) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar">
       <div className="sidebar__user-container">
-        <img
-          className="sidebar__user-avatar"
-          src={userAvatar}
-          alt="Terrance Tegegne"
-        ></img>
-        <div className="sidebar__text-container">
-          <p className="sidebar__user-name">Terrance Tegegne</p>
-          {isMobile && (
-            <div
-              className={`sidebar__mobile ${
-                isMobileMenuActive ? "sidebar__hidden" : ""
-              }`}
-            >
-              <button type="button" className="sidebar__mobile-btns">
-                Change profile data
-              </button>
-              <button type="button" className="sidebar__mobile-btns">
-                Log out
-              </button>
-            </div>
-          )}
-        </div>
+        {currentUser.avatar && (
+          <img
+            className="sidebar__user-avatar"
+            src={currentUser.avatar}
+            alt="User Avatar"
+          ></img>
+        )}
+        {!currentUser.avatar && (
+          <p className="sidebar__user-avatar-placeholder">
+            {currentUser.name[0]}
+          </p>
+        )}
+        <p className="sidebar__user-name">{currentUser.name}</p>
       </div>
+      <ul className="sidebar__container">
+        <li className="sidebar__item">
+          <button
+            type="button"
+            className="sidebar__btn"
+            onClick={handleEditProfileClick}
+          >
+            Change profile data
+          </button>
+        </li>
+        <li className="sidebar__item">
+          <button type="button" className="sidebar__btn" onClick={handleLogout}>
+            Log out
+          </button>
+        </li>
+      </ul>
     </div>
   );
 }

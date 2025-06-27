@@ -1,5 +1,6 @@
 .modal {
   position: relative;
+  z-index: 2;
 }
 .modal__container_type_preview {
   padding: 0;

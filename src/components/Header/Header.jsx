@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
 import "./Header.css";
+
 import logo from "../../assets/logo.svg";
-import userAvatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -11,11 +14,15 @@ function Header({
   setIsMobileMenuActive,
   isMobile,
   isProfilePage,
+  handleSignupClick,
+  handleLoginClick,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   const handleMobileMenuClick = () => {
     setIsMobileMenuActive(!isMobileMenuActive);
@@ -32,7 +39,6 @@ function Header({
           alt="logo"
         />
       </Link>
-
       <button
         onClick={handleMobileMenuClick}
         type="button"
@@ -50,25 +56,56 @@ function Header({
       {!isMobileMenuActive && !isMobile && (
         <ToggleSwitch className="header__toggle-switch" />
       )}
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add Clothes
-      </button>
-      <Link to="/profile" className="header__link">
-        <div className="header__user-container">
-          <p className="header__user-name">Terrance Tegegne</p>
-          <img
-            className="header__user-avatar"
-            src={userAvatar}
-            alt="Terrance Tegegne"
-          ></img>
+      {isLoggedIn && (
+        <div className="header__authorized-view">
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add Clothes
+          </button>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__user-name">{currentUser.name}</p>
+              {currentUser.avatar && (
+                <img
+                  className="header__user-avatar"
+                  src={currentUser.avatar}
+                  alt="User Avatar"
+                ></img>
+              )}
+              {!currentUser.avatar && (
+                <p className="header__user-avatar-placeholder">
+                  {currentUser.name[0]}
+                </p>
+              )}
+            </div>
+          </Link>
         </div>
-      </Link>
+      )}
 
-      {isMobileMenuActive && (
+      {!isLoggedIn && (
+        <ul className="header__unauthorized-view">
+          <li className="header__unauthorized-item">
+            <button
+              onClick={handleSignupClick}
+              className="header__unauthorized-btn"
+            >
+              Sign Up
+            </button>
+          </li>
+          <li className="header__unauthorized-item">
+            <button
+              onClick={handleLoginClick}
+              className="header__unauthorized-btn"
+            >
+              Log In
+            </button>
+          </li>
+        </ul>
+      )}
+      {isMobileMenuActive && isLoggedIn && (
         <div className="header__mobile-menu_active">
           <button
             onClick={handleMobileMenuClick}
@@ -77,13 +114,20 @@ function Header({
           ></button>
           <div className="header__mobile-user-container">
             <Link to="/profile" className="header__mobile-link">
-              <p className="header__mobile-user-name">Terrance Tegegne</p>
+              <p className="header__mobile-user-name">{currentUser.name}</p>
             </Link>
-            <img
-              className="header__mobile-user-avatar"
-              src={userAvatar}
-              alt="Terrance Tegegne"
-            ></img>
+            {currentUser.avatar && (
+              <img
+                className="header__mobile-user-avatar"
+                src={currentUser.avatar}
+                alt="User Avatar"
+              ></img>
+            )}
+            {!currentUser.avatar && (
+              <p className="header__mobile-user-avatar-placeholder">
+                {currentUser.name[0]}
+              </p>
+            )}
           </div>
           <button
             onClick={handleAddClick}
