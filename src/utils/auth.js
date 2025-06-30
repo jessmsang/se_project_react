@@ -1,4 +1,5 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
 export const register = (
   registerEmail,
@@ -34,15 +35,5 @@ export const login = (loginEmail, loginPassword) => {
     }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
-};
-
-export const tokenValidation = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
   });
 };
