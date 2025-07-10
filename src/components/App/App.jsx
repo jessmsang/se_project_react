@@ -177,15 +177,13 @@ function App() {
     }
   };
 
-  const handleLogin = ({ loginEmail, loginPassword }) => {
-    setIsLoading(true);
+  const handleLogin = ({ loginEmail, loginPassword }, resetForm) => {
     if (!loginEmail || !loginPassword) {
       return;
     }
 
-    auth
-      .login(loginEmail, loginPassword)
-      .then((data) => {
+    const makeRequest = () => {
+      return auth.login(loginEmail, loginPassword).then((data) => {
         if (data.token) {
           token.setToken(data.token);
           setIsLoggedIn(true);
@@ -195,11 +193,9 @@ function App() {
           closeActiveModal();
           resetForm();
         }
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
-      .catch(console.error);
+      });
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleLogout = () => {

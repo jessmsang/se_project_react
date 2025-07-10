@@ -42,10 +42,6 @@ function Main({
             })}
         </ul>
       </section>
-
-      <section>
-        <ModalWithForm />
-      </section>
     </main>
   );
 }
