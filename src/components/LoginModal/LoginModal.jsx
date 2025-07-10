@@ -1,8 +1,12 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
-function LoginModal({ onClose, isOpen, handleLogin, setActiveModal }) {
-  const { values, handleChange, setValues } = useForm({
+function LoginModal({ onClose, isOpen, setActiveModal, isLoading }) {
+  const { handleLogin } = useContext(UserContext);
+
+  const { values, handleChange, setValues, errorMessage } = useForm({
     loginEmail: "",
     loginPassword: "",
   });
@@ -21,12 +25,12 @@ function LoginModal({ onClose, isOpen, handleLogin, setActiveModal }) {
     <ModalWithForm
       titleText="Log In"
       name="Login-modal"
-      btnText="Log In"
+      btnText={isLoading ? "Logging In..." : "Log In"}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      onNavButtonClick={() => setActiveModal("register-modal")}
-      navButtonText="or Sign Up"
+      onNavBtnClick={() => setActiveModal("register-modal")}
+      navBtnText="or Sign Up"
     >
       <label htmlFor="login-email-input" className="modal__label">
         Email*
@@ -42,7 +46,9 @@ function LoginModal({ onClose, isOpen, handleLogin, setActiveModal }) {
           onChange={handleChange}
           value={values.loginEmail}
         />
-        <span className="modal__error" id="email-input-error"></span>
+        <span className="modal__error" id="login-email-input-error">
+          {errorMessage.loginEmail}
+        </span>
       </label>
       <label htmlFor="login-password-input" className="modal__label">
         Password*
@@ -58,7 +64,9 @@ function LoginModal({ onClose, isOpen, handleLogin, setActiveModal }) {
           onChange={handleChange}
           value={values.loginPassword}
         />
-        <span className="modal__error" id="password-input-error"></span>
+        <span className="modal__error" id="login-password-input-error">
+          {errorMessage.loginPassword}
+        </span>
       </label>
     </ModalWithForm>
   );

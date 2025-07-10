@@ -73,9 +73,9 @@
 }
 
 @media screen and (max-width: 725px) {
-  .card {
+  .card__container {
     max-width: 162px;
-    height: 162px;
+    max-height: 162px;
   }
 
   .card__name {

@@ -5,7 +5,7 @@ import "./Header.css";
 
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import UserContext from "../../contexts/UserContext";
 
 function Header({
   handleAddClick,
@@ -22,7 +22,7 @@ function Header({
     day: "numeric",
   });
 
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(UserContext);
 
   const handleMobileMenuClick = () => {
     setIsMobileMenuActive(!isMobileMenuActive);

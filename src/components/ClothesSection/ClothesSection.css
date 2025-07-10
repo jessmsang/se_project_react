@@ -44,6 +44,9 @@
 }
 
 @media screen and (max-width: 725px) {
+  .clothes-section {
+    margin: 20px 0;
+  }
   .clothes-section__text {
     flex-direction: row;
     justify-content: space-between;

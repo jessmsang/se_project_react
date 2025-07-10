@@ -7,8 +7,8 @@ function ModalWithForm({
   onClose,
   isOpen,
   onSubmit,
-  onNavButtonClick,
-  navButtonText,
+  onNavBtnClick,
+  navBtnText,
 }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`} id="modal-with-form">
@@ -23,13 +23,13 @@ function ModalWithForm({
           {children}
           <div className="modal__btn-wrapper">
             <button className="modal__submit-btn">{btnText}</button>
-            {navButtonText && (
+            {navBtnText && (
               <button
                 className="modal__nav-btn"
                 type="button"
-                onClick={onNavButtonClick}
+                onClick={onNavBtnClick}
               >
-                {navButtonText}
+                {navBtnText}
               </button>
             )}
           </div>

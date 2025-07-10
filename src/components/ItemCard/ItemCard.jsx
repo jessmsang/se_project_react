@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import "../ItemCard/ItemCard.css";
+import UserContext from "../../contexts/UserContext";
 
-function ItemCard({ item, onCardClick, onCardLike, currentUser }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
+  const { currentUser, isLoggedIn } = useContext(UserContext);
+
   const handleCardClick = () => {
     onCardClick(item);
   };
@@ -13,7 +17,7 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser }) {
     ? item.likes.some((id) => id === currentUser._id)
     : false;
 
-  const itemLikeButtonClassName = isLiked
+  const itemLikeBtnClassName = isLiked
     ? "card__like-filled"
     : "card__like-empty";
 
@@ -22,9 +26,9 @@ function ItemCard({ item, onCardClick, onCardLike, currentUser }) {
       <div className="card__container">
         <div className="card__header">
           <h2 className="card__name">{item.name}</h2>
-          {currentUser && (
+          {currentUser && isLoggedIn && (
             <button
-              className={itemLikeButtonClassName}
+              className={itemLikeBtnClassName}
               onClick={handleLike}
             ></button>
           )}

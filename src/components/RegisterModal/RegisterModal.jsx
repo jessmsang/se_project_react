@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
@@ -7,22 +6,28 @@ function RegisterModal({
   isOpen,
   handleRegistration,
   setActiveModal,
+  isLoading,
 }) {
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const { values, handleChange, setValues } = useForm({
-    registerEmail: "",
-    registerPassword: "",
-    confirmPassword: "",
-    registerName: "",
-    avatarUrl: "",
-  });
+  const { values, handleChange, setValues, errorMessage } = useForm(
+    {
+      registerEmail: "",
+      registerPassword: "",
+      confirmPassword: "",
+      registerName: "",
+      avatarUrl: "",
+    },
+    {
+      matchFields: {
+        field: "registerPassword",
+        confirmField: "confirmPassword",
+      },
+    }
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     if (values.registerPassword !== values.confirmPassword) {
-      setErrorMessage("Passwords do not match");
       return;
     } else {
       handleRegistration(values, () => {
@@ -41,12 +46,12 @@ function RegisterModal({
     <ModalWithForm
       titleText="Sign Up"
       name="register-modal"
-      btnText="Sign Up"
+      btnText={isLoading ? "Signing up..." : "Sign Up"}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      onNavButtonClick={() => setActiveModal("login-modal")}
-      navButtonText="or Log In"
+      onNavBtnClick={() => setActiveModal("login-modal")}
+      navBtnText="or Log In"
     >
       <label htmlFor="register-email-input" className="modal__label">
         Email*
@@ -62,7 +67,9 @@ function RegisterModal({
           onChange={handleChange}
           value={values.registerEmail}
         />
-        <span className="modal__error" id="email-input-error"></span>
+        <span className="modal__error" id="register-email-input-error">
+          {errorMessage.registerEmail}
+        </span>
       </label>
       <label htmlFor="register-password-input" className="modal__label">
         Password*
@@ -77,7 +84,9 @@ function RegisterModal({
           onChange={handleChange}
           value={values.registerPassword}
         />
-        <span className="modal__error" id="password-input-error"></span>
+        <span className="modal__error" id="register-password-input-error">
+          {errorMessage.registerPassword}
+        </span>
       </label>
       <label htmlFor="confirm-password-input" className="modal__label">
         Confirm Password*
@@ -94,7 +103,7 @@ function RegisterModal({
           value={values.confirmPassword}
         />
         <span className="modal__error" id="confirm-password-input-error">
-          {errorMessage}
+          {errorMessage.confirmPassword}
         </span>
       </label>
       <label htmlFor="register-name-input" className="modal__label">
@@ -111,7 +120,9 @@ function RegisterModal({
           onChange={handleChange}
           value={values.registerName}
         />
-        <span className="modal__error" id="name-input-error"></span>
+        <span className="modal__error" id="register-name-input-error">
+          {errorMessage.registerName}
+        </span>
       </label>
       <label htmlFor="avatar-input" className="modal__label">
         Avatar URL*
@@ -125,7 +136,9 @@ function RegisterModal({
           onChange={handleChange}
           value={values.avatarUrl}
         />
-        <span className="modal__error" id="avatar-input-error"></span>
+        <span className="modal__error" id="avatar-input-error">
+          {errorMessage.avatarUrl}
+        </span>
       </label>
     </ModalWithForm>
   );

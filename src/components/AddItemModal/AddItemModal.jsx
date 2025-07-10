@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
+function AddItemModal({ onClose, isOpen, onAddItemModalSubmit, isLoading }) {
   const { values, handleChange, setValues } = useForm({
     name: "",
     imageUrl: "",
@@ -23,7 +23,7 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
     <ModalWithForm
       titleText="New garment"
       name="new-card"
-      btnText="Add garment"
+      btnText={isLoading ? "Adding..." : "Add garment"}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}

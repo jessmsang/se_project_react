@@ -16,7 +16,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import UserContext from "../../contexts/UserContext";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -36,6 +36,7 @@ function App() {
   });
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("C");
@@ -53,6 +54,16 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const isProfilePage = location.pathname === "/profile";
+
+  const handleSubmit = (request) => {
+    setIsLoading(true);
+    request()
+      .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "C" ? "F" : "C");
@@ -83,6 +94,10 @@ function App() {
     setIsMobileMenuActive(false);
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile-modal");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -99,31 +114,6 @@ function App() {
       .catch(console.error);
   };
 
-  const handleAddItemModalSubmit = ({ name, weather, imageUrl }, resetForm) => {
-    api
-      .addItem({ name, weather, imageUrl })
-      .then((newItem) => {
-        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
-        resetForm();
-        closeActiveModal();
-      })
-      .catch(console.error);
-  };
-
-  const handleEditProfileClick = () => {
-    setActiveModal("edit-profile-modal");
-  };
-
-  const handleEditProfileModalSubmit = ({ name, avatar }) => {
-    api
-      .patchUser({ name, avatar })
-      .then((data) => {
-        setCurrentUser(data);
-        closeActiveModal();
-      })
-      .catch(console.error);
-  };
-
   const handleCardLike = ({ id, isLiked }) => {
     !isLiked
       ? api
@@ -133,7 +123,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch(console.error)
       : api
           .removeCardLike({ cardId: id })
           .then((updatedCard) => {
@@ -141,34 +131,54 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
-  const handleRegistration = (
-    {
-      registerEmail,
-      registerPassword,
-      confirmPassword,
-      registerName,
-      avatarUrl,
-    },
-    resetForm
-  ) => {
+  const handleAddItemModalSubmit = ({ name, weather, imageUrl }, resetForm) => {
+    const makeRequest = () => {
+      return api.addItem({ name, weather, imageUrl }).then((newItem) => {
+        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
+        resetForm();
+      });
+    };
+    handleSubmit(makeRequest);
+  };
+
+  const handleEditProfileModalSubmit = ({ name, avatar }) => {
+    const makeRequest = () => {
+      return api.patchUser({ name, avatar }).then((data) => {
+        setCurrentUser(data);
+      });
+    };
+    handleSubmit(makeRequest);
+  };
+
+  const handleRegistration = ({
+    registerEmail,
+    registerPassword,
+    confirmPassword,
+    registerName,
+    avatarUrl,
+  }) => {
     if (registerPassword === confirmPassword) {
-      auth
-        .register(registerEmail, registerPassword, registerName, avatarUrl)
-        .then(() => {
-          closeActiveModal();
-          handleLogin(
-            { loginEmail: registerEmail, loginPassword: registerPassword },
-            resetForm
-          );
-        })
-        .catch(console.error);
+      const makeRequest = () => {
+        return auth
+          .register(registerEmail, registerPassword, registerName, avatarUrl)
+          .then(() => {
+            closeActiveModal();
+            handleLogin(
+              { loginEmail: registerEmail, loginPassword: registerPassword },
+              resetForm
+            );
+            resetForm();
+          });
+      };
+      handleSubmit(makeRequest);
     }
   };
 
-  const handleLogin = ({ loginEmail, loginPassword }, resetForm) => {
+  const handleLogin = ({ loginEmail, loginPassword }) => {
+    setIsLoading(true);
     if (!loginEmail || !loginPassword) {
       return;
     }
@@ -185,6 +195,9 @@ function App() {
           closeActiveModal();
           resetForm();
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       })
       .catch(console.error);
   };
@@ -258,9 +271,31 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
   return (
-    <CurrentUserContext.Provider
-      value={{ currentUser, isLoggedIn, isAuthenticating }}
+    <UserContext.Provider
+      value={{
+        currentUser,
+        isLoggedIn,
+        isAuthenticating,
+        handleLogout,
+        handleLogin,
+      }}
     >
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -288,7 +323,6 @@ function App() {
                     isMobileMenuActive={isMobileMenuActive}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
-                    currentUser={currentUser}
                   />
                 }
               />
@@ -303,10 +337,9 @@ function App() {
                       handleAddClick={handleAddClick}
                       isMobile={isMobile}
                       isMobileMenuActive={isMobileMenuActive}
-                      currentUser={currentUser}
-                      handleLogout={handleLogout}
                       handleEditProfileClick={handleEditProfileClick}
                       onCardLike={handleCardLike}
+                      isLoading={isLoading}
                     />
                   </ProtectedRoute>
                 }
@@ -319,26 +352,28 @@ function App() {
               activeModal={activeModal}
               handleRegistration={handleRegistration}
               setActiveModal={setActiveModal}
+              isLoading={isLoading}
             ></RegisterModal>
             <LoginModal
               onClose={closeActiveModal}
               isOpen={activeModal === "login-modal"}
               activeModal={activeModal}
-              handleLogin={handleLogin}
               setActiveModal={setActiveModal}
+              isLoading={isLoading}
             ></LoginModal>
             <AddItemModal
               onClose={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               activeModal={activeModal}
               onAddItemModalSubmit={handleAddItemModalSubmit}
+              isLoading={isLoading}
             />
             <EditProfileModal
               activeModal={activeModal}
               onClose={closeActiveModal}
               isOpen={activeModal === "edit-profile-modal"}
               onEditProfileModalSubmit={handleEditProfileModalSubmit}
-              currentUser={currentUser}
+              isLoading={isLoading}
             />
             <ItemModal
               activeModal={activeModal}
@@ -357,7 +392,7 @@ function App() {
           <Footer />
         </div>
       </CurrentTemperatureUnitContext.Provider>
-    </CurrentUserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

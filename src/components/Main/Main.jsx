@@ -11,7 +11,6 @@ function Main({
   isMobileMenuActive,
   clothingItems,
   onCardLike,
-  currentUser,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -38,7 +37,6 @@ function Main({
                   item={item}
                   onCardClick={handleCardClick}
                   onCardLike={onCardLike}
-                  currentUser={currentUser}
                 />
               );
             })}

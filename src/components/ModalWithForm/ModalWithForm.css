@@ -146,6 +146,10 @@
   padding: 10px;
 }
 
+.modal__nav-btn:hover {
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 725px) {
   .modal {
     padding-left: 16px;

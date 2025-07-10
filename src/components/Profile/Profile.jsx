@@ -8,10 +8,9 @@ function Profile({
   handleAddClick,
   isMobile,
   isMobileMenuActive,
-  currentUser,
-  handleLogout,
   handleEditProfileClick,
   onCardLike,
+  isLoading,
 }) {
   return (
     <div className="profile">
@@ -23,9 +22,8 @@ function Profile({
         <SideBar
           isMobile={isMobile}
           isMobileMenuActive={isMobileMenuActive}
-          currentUser={currentUser}
-          handleLogout={handleLogout}
           handleEditProfileClick={handleEditProfileClick}
+          isLoading={isLoading}
         />
       </section>
       <section className="profile__clothes-section">
@@ -33,7 +31,6 @@ function Profile({
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
           handleAddClick={handleAddClick}
-          currentUser={currentUser}
           onCardLike={onCardLike}
         />
       </section>

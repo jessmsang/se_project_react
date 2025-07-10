@@ -1,13 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
+import UserContext from "../../contexts/UserContext";
 
 export default function EditProfileModal({
   onClose,
   isOpen,
   onEditProfileModalSubmit,
-  currentUser,
+  isLoading,
 }) {
+  const { currentUser } = useContext(UserContext);
+
   const { values, handleChange, setValues } = useForm({
     name: currentUser?.name,
     avatar: currentUser?.avatar,
@@ -29,7 +32,7 @@ export default function EditProfileModal({
     <ModalWithForm
       titleText="Change profile data"
       name="edit-profile-modal"
-      btnText="Save changes"
+      btnText={isLoading ? "Saving..." : "Save changes"}
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
