@@ -1,3 +1,5 @@
+import { checkResponse } from "./weatherApi";
+
 export const BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
@@ -18,9 +20,7 @@ export const register = (
       name: registerName,
       avatar: avatarUrl,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const login = (loginEmail, loginPassword) => {
@@ -33,7 +33,5 @@ export const login = (loginEmail, loginPassword) => {
       email: loginEmail,
       password: loginPassword,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };

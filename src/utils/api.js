@@ -1,9 +1,7 @@
 import { getToken } from "./token";
+import { checkResponse } from "./weatherApi";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
-const checkError = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-};
 
 export function getUser() {
   return fetch(`${BASE_URL}/users/me`, {
@@ -13,9 +11,7 @@ export function getUser() {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function patchUser({ name, avatar }) {
@@ -30,9 +26,7 @@ export function patchUser({ name, avatar }) {
       name,
       avatar,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function getItems() {
@@ -41,7 +35,7 @@ export function getItems() {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(checkError);
+  }).then(checkResponse);
 }
 
 export function addItem({ name, weather, imageUrl }) {
@@ -56,7 +50,7 @@ export function addItem({ name, weather, imageUrl }) {
       weather,
       imageUrl,
     }),
-  }).then(checkError);
+  }).then(checkResponse);
 }
 
 export function deleteItem({ cardId }) {
@@ -67,7 +61,7 @@ export function deleteItem({ cardId }) {
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ cardId }),
-  }).then(checkError);
+  }).then(checkResponse);
 }
 
 export function addCardLike({ cardId }) {
@@ -78,7 +72,7 @@ export function addCardLike({ cardId }) {
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ cardId }),
-  }).then(checkError);
+  }).then(checkResponse);
 }
 
 export function removeCardLike({ cardId }) {
@@ -89,5 +83,5 @@ export function removeCardLike({ cardId }) {
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ cardId }),
-  }).then(checkError);
+  }).then(checkResponse);
 }
