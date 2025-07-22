@@ -20,7 +20,7 @@ import UserContext from "../../contexts/UserContext";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import * as api from "../../utils/api";
 import * as token from "../../utils/token";
