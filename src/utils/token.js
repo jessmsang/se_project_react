@@ -1,5 +1,6 @@
+import { BASE_URL } from "./constants";
+
 const TOKEN_KEY = "jwt";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
 
 export const setToken = (token) => localStorage.setItem(TOKEN_KEY, token);
 

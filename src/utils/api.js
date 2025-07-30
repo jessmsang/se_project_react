@@ -1,7 +1,6 @@
 import { getToken } from "./token";
 import { checkResponse } from "./weatherApi";
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+import { BASE_URL } from "./constants";
 
 export function getUser() {
   return fetch(`${BASE_URL}/users/me`, {
