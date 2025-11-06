@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://wtwr-js.jumpingcrab.com",
+  "homepage": "https://wtwr.devbyjess.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "NODE_ENV=production npm run build && scp -r ./dist/* jessicamsang@wtwr-js.jumpingcrab.com:/home/jessicamsang/frontend"
+    "deploy": "NODE_ENV=production npm run build && scp -r ./dist/* jessicamsang@wtwr.devbyjess.com:/home/jessicamsang/frontend"
   },
   "dependencies": {
     "react": "^19.0.0",
